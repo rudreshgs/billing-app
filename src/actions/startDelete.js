@@ -1,15 +1,9 @@
-import axios from 'axios'
+import axios from '../config/aaxiosConfig'
 
 export const startDelete = (id,flist) =>{
 
     return (dispatch)=>{
-            const token = localStorage.getItem('token')
-
-          axios.delete(`https://dct-billing-app.herokuapp.com/api/customers/${id}`,{
-              headers : {
-                  'Authorization' : `Bearer ${token}`
-              }
-          })
+          axios.delete(`/api/customers/${id}`)
           .then((res)=>{
                dispatch(setDeletedList(flist))
           })

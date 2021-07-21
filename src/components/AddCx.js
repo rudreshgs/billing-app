@@ -1,12 +1,13 @@
 import React, {useState} from 'react'
 import validator from 'validator'
+import swal from 'sweetalert'
 import {useDispatch} from 'react-redux'
-import { startAddcx } from '../actions/startAddCx'
+import { startAddCx } from '../actions/startAddCx'
 
 const AddCx = (props) => {
 
     const dispatch = useDispatch()
-
+    const {handleAddNewCx} = props
     const [name, setName] = useState('')
     const [mobile, setMobile] = useState('')
     const [email, setEmail] = useState('')
@@ -39,38 +40,63 @@ const AddCx = (props) => {
         }
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e) =>{
         e.preventDefault()
 
         runValidations()
-        if(Object.keys(errors).length === 0){
+        if(Object.keys(errors).length === 0 ){
             setFormErrors({})
-        }
+            const formData = {
+                name,
+                mobile,
+                email
+              }
+            //   console.log(formData)
+            dispatch(startAddCx(formData))
 
-        const formData = {
-            name,
-            mobile,
-            email
-        }
-        dispatch(startAddcx(formData))
-        // console.log(formData)
-        // reset
+        //reset
         setName('')
         setMobile('')
         setEmail('')
-        alert('new customer added!!')
+        swal('Customer Added!','','success')
+        if(handleAddNewCx !== undefined){
+            handleAddNewCx()
+        }
+        }else{
+            setFormErrors(errors)
+            console.log(errors)
+        }
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="Customer Name" value ={name} name="customer" onChange={handleChange} /> 
-                <input type="number" placeholder="Mobile No" value={mobile} name="mobile" onChange={handleChange} />
-                <input type="email" placeholder="Email" value={email} name="email" onChange={handleChange} />
-                <input type="submit" value="Add" />
-            </form>
-
-        </div>
+        <>
+            <div className="row ml-5">
+                <form className="form-inline" onSubmit={handleSubmit}>
+                <div className="d-flex">
+                    <div className="col-3">
+                        {/* <label className="sr-only" for="inlineFormInputName2">Name</label> */}
+                        <input type="text" className="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="CustomerName" value={name} name="customer" onChange={handleChange}/>
+                        {formErrors.name && <small className="text-danger">{formErrors.name}</small>}
+                        {formErrors.namelength && <small className="text-danger">{formErrors.namelength}</small>}
+                    </div>
+                    <div className="col-3">
+                        {/* <label className="sr-only" for="inlineFormInputName2">Mobile</label> */}
+                        <input type="number" className="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Mobile No" value={mobile} name="mobile" onChange={handleChange}/>
+                        {formErrors.mobile && <small className="text-danger">{formErrors.mobile}</small>}
+                    </div>
+                    <div className="col-3">
+                        {/* <label className="sr-only" for="inlineFormInputGroupUsername2">Email</label> */}
+                        <input type="email" className="form-control mb-2 mr-sm-2" id="inlineFormInputGroupUsername2" placeholder="Email" value={email} name="email" onChange={handleChange}/><br/>
+                        {formErrors.email && <small className="text-danger">{formErrors.email}</small>}
+                    </div>
+                    <div className="col">
+                        <input type="submit" className="btn btn-primary mb-2" value="Add"/>
+                    </div>
+                </div>
+                </form>
+                
+            </div><br/>
+        </>
     )
 }
 

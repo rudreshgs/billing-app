@@ -1,14 +1,8 @@
-import axios from 'axios'
+import axios from '../config/aaxiosConfig'
 
 export const startAddPro = (formData) => {
-    const token = localStorage.getItem('token')
-
     return (dispatch) => {
-        axios.post('https://dct-billing-app.herokuapp.com/api/products', formData, {
-            headers: {
-                'Authorization' : `Bearer ${token} `
-            }
-        })
+        axios.post('/api/products', formData)
         .then((res)=> {
             if(res.data.hasOwnProperty('errors')){
                 alert(res.data.message)

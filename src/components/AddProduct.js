@@ -34,13 +34,21 @@ const AddProduct = (props) => {
 
     return (
         <div>
-            <hr />
-            <form onSubmit={handleSubmit}>
-                {/* <label>Name</label> */}
-                <input type="text" placeholder="Product Name" value={product} name="product" onChange={handleChange} required/>
-                <input type="number" placeholder="Price" value={price} name="price" onChange={handleChange} required/>
-                <input type="submit" value="Add" />
-            </form>
+            <div className="row ml-5">
+                <form className="form-inline" onSubmit={handleSubmit}>
+                <div className="d-flex">
+                    <div className= "col-3">
+                    {/* <label className="sr-only" for="inlineFormInputName2">Name</label> */}
+                    <input type="text" className="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Product Name" value={product} name="product" onChange={handleChange} required/>
+                    </div>
+                    {/* <label className="sr-only" for="inlineFormInputName2">Name</label> */}
+                    <div className= "col-3">
+                    <input type="number" className="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Price" value={price} name="price" onChange={handleChange} required/>
+                    </div>
+                    <input type="submit" className="btn btn-primary mb-2" value="Add" />
+                </div>
+                </form>
+            </div> <br />
         </div>
     )
 }

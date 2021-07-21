@@ -32,12 +32,17 @@ const ProEditForm = (props) => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <label>Product Name</label>
-                <input type="text" placeholder="Product Name" onChange={handleChange} name="name" value={name} />
+            <div className="form-group">
+                <label for="exampleInputPassword1">Product Name</label>
+                <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Product Name" onChange={handleChange} name="name" value={name} />
+            </div>
+            <div className="form-group">
+                <label for="exampleInputPassword1">Price</label>
                 <label>Price</label>
-                <input type="number" placeholder="Price" onChange={handleChange} name="price" value={price} />
+                <input type="number" className="form-control" id="exampleInputPassword1" placeholder="Price" onChange={handleChange} name="price" value={price} />
+            </div>    
                 <ModalFooter>
-                     <input  type="submit" className="btn btn-primary" value="Update"/>{'  '}
+                     <input type="submit" className="btn btn-primary" value="Update"/>{'  '}
                      <Button color="secondary" onClick={toggle}>Cancel</Button>
             </ModalFooter>
             </form>

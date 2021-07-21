@@ -37,16 +37,22 @@ const EditForm = (props) =>{
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <label> Name </label>
-                <input type="text" placeholder="Name" name="name" onChange={handleChange} value={name} />
-                <label> Mobile </label>
-                <input type="number" placeholder="Mobile No" name="mobile" onChange={handleChange} value={mobile} />
-                <label> Email </label>
-                <input type="email" placeholder="Enter email" name="email" onChange={handleChange} value={email} />
-                <ModalFooter>
-                    <input type="submit" value="Update"/> {' '}
-                    <Button onClick={toggle}>Cancel</Button>
-                </ModalFooter>
+            <div className="form-group">
+                <label for="exampleInputPassword1"> Name </label>
+                <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Name" name="name" onChange={handleChange} value={name} />
+            </div>
+            <div className="form-group">
+                <label for="exampleInputMobile1"> Mobile </label>
+                <input type="number" className="form-control" id="exampleInputMobile1" placeholder="Mobile No" name="mobile" onChange={handleChange} value={mobile} />
+            </div>
+            <div className="form-group">
+                <label for="exampleInputEmail1"> Email </label>
+                <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Enter email" name="email" onChange={handleChange} value={email} />
+            </div>
+            <ModalFooter>
+                <input className="btn btn-primary" type="submit" value="Update"/> {'  '}
+                <Button color="secondary" onClick={toggle}>Cancel</Button>
+            </ModalFooter>
             </form>
         </div>
     )

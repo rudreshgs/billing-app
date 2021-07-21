@@ -1,13 +1,8 @@
-import axios from 'axios'
+import axios from '../config/aaxiosConfig'
 
 export const startProEdit = (formData, id) => {
     return (dispatch) => {
-        const token = localStorage.getItem('token')
-        axios.put(`https://dct-billing-app.herokuapp.com/api/products/${id}`,formData,{
-            headers : {
-                'Authorization' : `Bearer ${token}`
-            }
-        })
+        axios.put(`/api/products/${id}`,formData)
         .then((res)=> {
             dispatch(setEditedData(res.data))
         })

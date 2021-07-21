@@ -9,7 +9,7 @@ const TableList = (props) => {
     
     return (
         <div>
-            <table>
+            <table className="table table-striped table-bordered">
                 <thead> 
                     <tr>
                         <th>id</th>
@@ -27,11 +27,11 @@ const TableList = (props) => {
                                     <td>{ele.name}</td>
                                     <td>{ele.mobile}</td>
                                     <td>{ele.email}</td>
-                                    <td> <button onClick={()=> {
+                                    <td> <button className="btn btn-success" onClick={()=> {
                                         handleEdit(ele._id)
                                         toggle()
                                     }}> Edit </button></td>
-                                    <td> <button onClick={()=>{
+                                    <td> <button className="btn btn-danger" onClick={()=>{
                                         handleDelete(ele._id)
                                     }}> Delete </button></td>
                                 </tr>

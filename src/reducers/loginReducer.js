@@ -6,7 +6,6 @@ const loginReducer = (state=initialState, action) => {
         case 'SET_USER' : {
             return {...action.payload}
         }
-
         default: {
             return state
         }

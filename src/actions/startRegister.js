@@ -1,10 +1,9 @@
-import axios from 'axios'
+import axios from '../config/aaxiosConfig'
 
 export const startRegister = (formData, history) => {
     return (dispatch) => {
-        axios.post('http://dct-billing-app.herokuapp.com/api/users/register',formData)
+        axios.post('/api/users/register',formData)
         .then((res) => {
-            // console.log(res.data)
             alert('Registration Successfull')
             history.push('/login')
         })

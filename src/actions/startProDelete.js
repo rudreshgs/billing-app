@@ -1,14 +1,8 @@
-import axios from 'axios'
+import axios from '../config/aaxiosConfig'
 
 export const startProDelete = (id, flist) => {
-    const token = localStorage.getItem('token')
-
     return (dispatch) => {
-        axios.delete(`https://dct-billing-app.herokuapp.com/api/products/${id}`,{
-            headers : {
-                'Authorization' : `Bearer ${token}`
-            }
-        })
+        axios.delete(`/api/products/${id}`)
         .then((res)=> {
             dispatch(setDeletedProlist(flist))
         })

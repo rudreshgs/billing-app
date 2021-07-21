@@ -39,7 +39,6 @@ const Login = (props) => {
 
         if(Object.keys(errors).length === 0){
             setFormErrors({})
-
             const formData = {
                 email: email,
                 password: password
@@ -57,13 +56,29 @@ const Login = (props) => {
     }
 
     return (
-        <div>
-            <h3> LOGIN </h3> 
-            <form onSubmit= {handleSubmit}>
-                <input type= "email" placeholder="Email" onChange={handleChange} name="email" value={email} /> <br />
-                <input type= "password" placeholder="Password" onChange={handleChange} name="password" value={password} /> <br />
-                <input type= "submit" value="Login" />
-            </form>
+        <div className="row justify-content-center mt-5">
+            <div className="col-md-6 col-sm-8 col-lg-5 card bg-$gray-900">    
+                <h3 className="text-center mt-3 text-$gray-900"> LOGIN </h3> 
+                <form className="card-body" onSubmit= {handleSubmit}>
+                    {formErrors.vemail && <small style={{color:"red"}}>{formErrors.vemail}</small>}
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text" id="basic-addon1"><i className="fa fa-envelope"></i></span>
+                             </div>
+                            <input type= "email" placeholder="Email" className="form-control"  onChange={handleChange} name="email" value={email} /> <br />
+                        </div>
+                    {formErrors.vpassword && <small style={{color:"red"}}>{formErrors.vpassword}</small>}
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text" id="basic-addon1"><i className="fa fa-user-secret"></i></span>
+                            </div>
+                            <input type= "password" className="form-control" placeholder="Password" onChange={handleChange} name="password" value={password} /> <br />
+                        </div>
+                        <div className="input-group mb-3">
+                            <input type="submit" className="btn btn-success mx-auto" value="Login"/>
+                        </div>
+                </form>
+            </div>
         </div>
     )
 }

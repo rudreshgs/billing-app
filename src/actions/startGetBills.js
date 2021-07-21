@@ -1,12 +1,10 @@
 import axios from '../config/aaxiosConfig'
 
-export const startProfile = () => {
-
+export const startGetBills = () => {
     return(dispatch) => {
-        axios.get('/api/users/account')
+        axios.get('/api/bills')
         .then((res)=> {
-            console.log(res.data)
-            dispatch(setUser(res.data))
+            dispatch(setBills(res.data))
         })
         .catch((err)=> {
             alert(err.message)
@@ -14,9 +12,9 @@ export const startProfile = () => {
     }
 }
 
-export const setUser= (data) => {
+export const setBills = (data) => {
     return {
-        type: 'SET_USER',
+        type: 'GET_BILLS',
         payload: data
     }
 }

@@ -1,15 +1,9 @@
-import axios from 'axios'
+import axios from '../config/aaxiosConfig'
 
 export const startProducts = () =>{
 
     return (dispatch) =>{
-        const token = localStorage.getItem('token')
-
-        axios.get('https://dct-billing-app.herokuapp.com/api/products',{
-            headers : {
-                'Authorization' : `Bearer ${token}`
-            }
-        })
+        axios.get('/api/products')
         .then((res)=>{
             dispatch(setProducts(res.data))
         })

@@ -5,9 +5,15 @@ const billReducer = (state=initialState, action) => {
         case 'GET_BILLS' : {
             return [...action.payload].reverse()
         }
+        case 'ADD_BILL' : {
+            return [{...action.payload}, ...state]
+        }
         default : {
             return state
         }
+        case 'DELETE_BILL' : {
+            return [...action.payload]
+       }
     }
 }
 

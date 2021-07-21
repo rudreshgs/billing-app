@@ -1,14 +1,16 @@
-import axios from "axios"
+import axios from '../config/aaxiosConfig'
+import swal from 'sweetalert'
 
 export const startLogin = (formData, history, handleAuth) => {
 
     return (dispatch) => {
-        axios.post('https://dct-billing-app.herokuapp.com/api/users/login',formData)
+        axios.post('/api/users/login',formData)
         .then((res)=> {
             if(res.data.hasOwnProperty('errors')){
-                alert(res.data.errors)
+                // alert(res.data.errors)
+                swal('oops!',res.data.errors,'warning')
             } else {
-                alert('logged in successfully')
+                swal('Success!','logged in successfully!','success')
                 localStorage.setItem('token', res.data.token)
                 history.push('/dashboard')
                 handleAuth()

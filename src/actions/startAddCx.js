@@ -1,13 +1,10 @@
-import axios from 'axios'
+import axios from '../config/aaxiosConfig'
 
-export const startAddcx = (formData) => {
+export const startAddCx = (formData) => {
 
     return (dispatch) => {
-        const token = localStorage.getItem('token')
-        axios.post('https://dct-billing-app.herokuapp.com/api/customers',formData,{
-            headers : {
-                'Authorization' : `Bearer ${token}`
-            }
+        // const token = localStorage.getItem('token')
+        axios.post('/api/customers',formData,{
         })
         .then((res)=> {
             console.log('added data',res.data)

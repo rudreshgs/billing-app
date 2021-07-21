@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import swal from 'sweetalert'
-import {startCustomers} from '../actions/startCustomers'
 import {startDelete} from '../actions/startDelete'
 import AddCx from './AddCx'
 import TableList from './TableList'
@@ -57,17 +56,29 @@ const Customers =(props) => {
         setFilter(filterData)
     }
     
-    useEffect(()=> {
-        dispatch(startCustomers())
-    },[])
+    // useEffect(()=> {
+    //     dispatch(startCustomers())
+    // },[])
 
     return (
         <div>
-            <h2> Add Customers</h2> <hr />
-            <AddCx />
-            <h2> Existing Customers</h2>
-            <input type="text" placeholder="Search by Name" onChange={handleChange} value={search} name="search" />
-            <TableList cxdata={filter} handleDelete={handleDelete} handleEdit={handleEdit} editData={editData} />
+            <h2 className="mt-3 ml-5 mb-3">Add Customers</h2>
+            <AddCx /> <hr />
+            <h2 className="mt-3 ml-5 mb-3"> Existing Customers</h2>
+            {cxdata.length === 0 ? (
+                <div className="row">
+                    <div className="col-md-8 offset-2">
+                        <div className="alert alert-primary mt-5 p-5 text-center" role="alert"> <b> No data found! </b></div>
+                    </div>
+                </div>
+
+            ) : (<>
+                <div className="row mb-3">
+                    <div className="col-md-4 ml-5">
+                        <input type="text" className="form-control" placeholder="Search by Name" onChange={handleChange} value={search} name="search"/>
+                    </div>
+                </div><TableList cxdata={filter} handleDelete={handleDelete} handleEdit={handleEdit} editData={editData} /></>
+            )}
         </div>
     )
 }
